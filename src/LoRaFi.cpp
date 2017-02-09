@@ -66,6 +66,7 @@ void LoRaFi::begin(uint8_t cs, uint8_t rst, uint8_t rx_sw, uint8_t tx_sw, uint8_
 
 	Mode(LORA);
 	delay(10);
+	SpreadingFactor(12);
 
 delay(100);
 }
