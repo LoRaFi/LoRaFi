@@ -131,26 +131,6 @@ private:
 };
 
 
-//extern LoRaFi LoRaFi;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//https://github.com/sandeepmistry/arduino-LoRa/blob/master/API.md
-
-
-
-
 
 
 #endif
