@@ -106,6 +106,10 @@ class LoRaFi
 
 		float SNR(void);
 
+		void ReceivingInterrupt(void (*userFunction)(void));
+
+		void CancelInterrupt(void);
+
 		//Habdling data for send
 		//void Send(const);
 		//void Send(const String);
@@ -122,10 +126,14 @@ class LoRaFi
 		int ReceiveInt(void);			//receive int value
 		unsigned int ReceiveUint(void);	//receive unsigned int value
 		double ReceiveDouble(void);	//receive double value
+		char ReceiveChar(void);  // receive char 
 	
 	
 private: 
 	uint8_t LoRaPins[5];
+	bool interrupt = false;
+
+		void SetInterrupt(void);
 
 	
 };
