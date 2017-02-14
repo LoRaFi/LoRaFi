@@ -251,6 +251,62 @@ void LoRaFi::SyncWord(uint8_t sw)
 
 
 
+//Set Receiving Interrupt
+void LoRaFi::ReceivingInterrupt(void (*userFunction)(void))
+{
+	if(!interrupt)
+	{	
+		interrupt = true;	
+		SetInterrupt();
+		attachInterrupt(digitalPinToInterrupt(LoRaPins[4]), userFunction, RISING);	
+
+	}
+
+}
+
+
+
+
+//Cancel receiving interrupt
+void LoRaFi::CancelInterrupt(void)
+{
+	if(interrupt)
+	{
+	detachInterrupt(LoRaPins[4]);
+	interrupt = false;
+	}
+}
+
+
+
+
+//set receiving interrupt regesters
+void LoRaFi::SetInterrupt()
+{
+
+	digitalWrite(LoRaPins[0], HIGH);
+	
+  	//Switch LoRa to standby
+  	Mode(RX_CONTINUOUS);
+  
+    //Load FIFO tx pointer
+    uint8_t value = Read_Register(0x0E);
+    Write_Register(0x0D, value);
+  
+    // Receive Mode
+  	digitalWrite(LoRaPins[3], LOW);		//TX_SW = 0;
+  	digitalWrite(LoRaPins[2], HIGH);	//RX_SW = 1;
+  
+    //IRD mask
+    Write_Register(0x11, 0x87);
+
+    //clear IRQ
+    Write_Register(0x12, 0xFF);
+}
+
+
+
+
 //Write data to specific register 
 void LoRaFi::Write_Register(uint8_t address, uint8_t data)
 {
@@ -342,9 +398,19 @@ void LoRaFi::SendPackage(char *Package, uint8_t packageLength)
 
   	delay(1);
 
+	//Check for interrupt
+	if(!interrupt)
+	{
   	//stop sending and receiving 
   	digitalWrite(TX_SW, LOW);  //TX_SW = 0;
   	digitalWrite(RX_SW, LOW); //RX_SW = 0;
+	}
+	else 
+	{
+	 // Receive Mode
+  	 digitalWrite(LoRaPins[3], LOW);	//TX_SW = 0;
+  	 digitalWrite(LoRaPins[2], HIGH);	//RX_SW = 1;
+	}
 
 }
 
@@ -359,29 +425,35 @@ void LoRaFi::ReceivePackage(char *Package, uint8_t packageLength)
   uint8_t PackageLocation;
   
   	digitalWrite(LoRaPins[0], HIGH);
-  
-  	//Switch LoRa to standby
-  	Mode(RX_CONTINUOUS);
-  
+
     //Load FIFO tx pointer
-    uint8_t value = Read_Register(0x0E);
-    Write_Register(0x0D, value);
+    //uint8_t value = Read_Register(0x0E);
+    //Write_Register(0x0D, value);
+	
+	//check for interrupt
+	if(!interrupt)
+	{
+  	//Switch LoRa to standby
+  	//Mode(RX_CONTINUOUS);
+  
+	SetInterrupt();
   
     // Receive Mode
-  	digitalWrite(LoRaPins[3], LOW);		//TX_SW = 0;
-  	digitalWrite(LoRaPins[2], HIGH);	//RX_SW = 1;
+  	//digitalWrite(LoRaPins[3], LOW);		//TX_SW = 0;
+  	//digitalWrite(LoRaPins[2], HIGH);	//RX_SW = 1;
   
     //IRD mask
-    Write_Register(0x11, 0x87);
+    //Write_Register(0x11, 0x87);
 
     //clear IRQ
-    Write_Register(0x12, 0xFF);
+    //Write_Register(0x12, 0xFF);
     
     while (digitalRead(LoRaPins[4]) == 0)
     {
       delay(1);
     }
 
+	}
   	//Get interrupt register
   	LoRa_Interrupt = Read_Register(0x12);
   
@@ -401,9 +473,15 @@ void LoRaFi::ReceivePackage(char *Package, uint8_t packageLength)
     	Package++;
   	}
 
+
+
   	//stop sending and receiving 
   	digitalWrite(TX_SW, LOW);  //TX_SW = 0;
   	digitalWrite(RX_SW, LOW); //RX_SW = 0;
+	
+	//Check for interrupt
+	if(interrupt)
+	{ SetInterrupt();}
 
 }
 
@@ -479,11 +557,8 @@ int LoRaFi::ReceiveInt(void)
 	//Get received data in char type
 	ReceivePackage(receivedChar,10); 
 	
-	int converted;
 	//convert char data to int
-	sscanf(receivedChar, "%d", &converted);
-	
-	return converted;
+	return atoi(receivedChar);
 }
 
 
@@ -508,6 +583,24 @@ double LoRaFi::ReceiveDouble(void)
 	
 	return atof(receivedDouble);
 }
+
+
+
+//Receive char
+char LoRaFi::ReceiveChar(void)
+{
+	char receivedchar[1];
+
+	ReceivePackage(receivedchar,1);
+	
+	return receivedchar[0];
+}
+
+
+
+
+
+
 
 
 
