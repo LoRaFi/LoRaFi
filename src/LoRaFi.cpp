@@ -80,8 +80,8 @@ void LoRaFi::Mode(uint8_t mode)
 
 	if(mode == LORA) 
 	{
-		Write_Register(0x01, SLEEP);	// enter sleep mood to select other modes
-		Write_Register(0x01, LORA);  		//enter user selected mode
+		Write_Register(0x01, SLEEP);			// enter sleep mood to select other modes
+		Write_Register(0x01, LORA);  			//enter user selected mode
 		Write_Register(0x01, LORA | STANDBY); 	//Wake up LoRa module
 	}
 	else { Write_Register(0x01, LORA | mode);}
@@ -425,28 +425,13 @@ void LoRaFi::ReceivePackage(char *Package, uint8_t packageLength)
   uint8_t PackageLocation;
   
   	digitalWrite(LoRaPins[0], HIGH);
-
-    //Load FIFO tx pointer
-    //uint8_t value = Read_Register(0x0E);
-    //Write_Register(0x0D, value);
 	
 	//check for interrupt
 	if(!interrupt)
 	{
-  	//Switch LoRa to standby
-  	//Mode(RX_CONTINUOUS);
   
 	SetInterrupt();
-  
-    // Receive Mode
-  	//digitalWrite(LoRaPins[3], LOW);		//TX_SW = 0;
-  	//digitalWrite(LoRaPins[2], HIGH);	//RX_SW = 1;
-  
-    //IRD mask
-    //Write_Register(0x11, 0x87);
 
-    //clear IRQ
-    //Write_Register(0x12, 0xFF);
     
     while (digitalRead(LoRaPins[4]) == 0)
     {
@@ -489,28 +474,38 @@ void LoRaFi::ReceivePackage(char *Package, uint8_t packageLength)
 
 //handling data for send
 
-//handling constant chat
+
+//handling String
+void LoRaFi::Send(const String &s)
+{
+	SendPackage((char *)s.c_str(), (uint8_t) s.length());   
+}
+
+
+
+//handling constant char
 void LoRaFi::Send(const char package[])
 {
-	uint8_t length = strlen(package);
-	SendPackage((char *) package, length);
-
+	SendPackage((char *) package, strlen(package));
 }
 
 
 //handling char
 void LoRaFi::Send(char package)
 {
-	uint8_t length = sizeof(package);
-	SendPackage( &package, length);
+	uint8_t len = sizeof(package);
+	SendPackage( &package, len);
 }
 
 //handling unsigned char
 void LoRaFi::Send(unsigned char package)
 {
-	uint8_t length = sizeof(package);
-	SendPackage((char*) &package, length);
+	uint8_t len = sizeof(package);
+	SendPackage((char*) &package, len);
 }
+
+
+
 
 
 //handling int
@@ -525,19 +520,37 @@ void LoRaFi::Send(int package)
 //
 void LoRaFi::Send(unsigned int package)
 {
-	uint8_t length = sizeof(package);
+	uint8_t len = sizeof(package);
 	char buffer[10];
 	utoa(package, buffer, 10);
 	SendPackage(buffer, 10);
-	Serial.print("size: ");
-	Serial.println(length);
+
 }
+
+
+
+//Handling long
+void LoRaFi::Send(long l)
+{
+	long_conv.union_long = l;
+	SendPackage(long_conv.union_char, 4);
+}
+
+
+
+//Handling unsigned long
+void LoRaFi::Send(unsigned long l)
+{
+	Ulong_conv.union_Ulong = l;
+	SendPackage(Ulong_conv.union_char, 4);
+}
+
 
 
 //Handling double
 void LoRaFi::Send(double package, uint8_t digit)
 {
-	uint8_t length = sizeof(package);
+	uint8_t len = sizeof(package);
 
 	char *convertedChar;
 	sprintf(convertedChar, "%f", package);
@@ -571,6 +584,39 @@ unsigned int LoRaFi::ReceiveUint(void)
 	
 	//convert char data to unsigned int and return it 
 	return strtoul(receivedUint,NULL,10);
+}
+
+
+//Handling received long
+long LoRaFi::ReceiveLong(void)
+{
+	char receivedLong[4];
+	//Get received data in char type
+	ReceivePackage(receivedLong,4);
+
+	long_conv.union_char[0] = receivedLong[0];
+	long_conv.union_char[1] = receivedLong[1];
+	long_conv.union_char[2] = receivedLong[2];
+	long_conv.union_char[3] = receivedLong[3];
+
+	return long_conv.union_long;
+}
+
+
+
+//Handling received unsigned long
+unsigned long LoRaFi::ReceiveUlong(void)
+{
+	char receivedUlong[4];
+	//Get received data in char type
+	ReceivePackage(receivedUlong,4);
+
+	Ulong_conv.union_char[0] = receivedUlong[0];
+	Ulong_conv.union_char[1] = receivedUlong[1];
+	Ulong_conv.union_char[2] = receivedUlong[2];
+	Ulong_conv.union_char[3] = receivedUlong[3];
+
+	return Ulong_conv.union_Ulong;
 }
 
 
