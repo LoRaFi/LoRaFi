@@ -30,8 +30,8 @@
 #include <string.h>
 #include <WString.h>
 #include <stdlib.h>
-#include<stdio.h>
-#include<math.h>
+#include <stdio.h>
+#include <math.h>
 
 using namespace std;
 
@@ -39,38 +39,37 @@ using namespace std;
 #define SLEEP			0x00
 #define STANDBY			0x01
 #define LORA			0x80
-#define TX				0x03
-#define RX_CONTINUOUS	0x05
-#define RX				0x06
+#define TX			0x03
+#define RX_CONTINUOUS		0x05
+#define RX			0x06
 
 //Define Registers
-#define POWER_REGISTER	0x09
+#define POWER_REGISTER		0x09
 
 //Define defult pins
 #define CS		10
 #define RST		9
-#define RX_SW	8
-#define TX_SW	7
-#define DIO0	3
+#define RX_SW		8
+#define TX_SW		7
+#define DIO0		3
 
 //Define other variables 
 #define DEFAULT_SPREADING_FACTOR	7
-#define DEFAULT_BW					125000
+#define DEFAULT_BW			125000
 #define DEFAULT_PACKAGE_LENGTH		10
-#define DEFAULT_FREQUENCY			915000000
-#define DEFAUL_C_RATE				5
+#define DEFAULT_FREQUENCY		915000000
+#define DEFAUL_C_RATE			5
 #define DEFAULT_PREAMBLE_LENGTH		8
-#define DEFAULT_SW					0x34
-#define MAX_POWER					0x8F
-#define NORMAL_POWER				0x0F
-#define DEFAULT_DIGIT_NO			2
+#define DEFAULT_SW			0x34
+#define MAX_POWER			0x8F
+#define NORMAL_POWER			0x0F
+#define DEFAULT_DIGIT_NO		2
 
 
 class LoRaFi
 {
    public:
 		LoRaFi();
-		//~LoRaFi();
 		
         void begin(uint8_t cs = CS, uint8_t rst = RST, uint8_t rx_sw = RX_SW, uint8_t tx_sw = TX_SW, uint8_t dio0 = DIO0);
         
@@ -111,29 +110,56 @@ class LoRaFi
 		void CancelInterrupt(void);
 
 		//Habdling data for send
-		//void Send(const);
-		//void Send(const String);
-		void Send(const char[]);
-		void Send(char);
-		void Send(unsigned char);
-		void Send(int);
-		void Send(unsigned int);
-		void Send(long);
-		void Send(unsigned long);
-		void Send(double package, uint8_t digit = DEFAULT_DIGIT_NO);
+		void Send(const char[]);	// send char array
+
+		void Send(char);			// send char
+
+		void Send(unsigned char);	// send unsigned char
+
+		void Send(int);				// send int
+
+		void Send(unsigned int);	// send unsigend 
+
+		void Send(long);			// send long 
+
+		void Send(unsigned long);	// send unsigned long 
+
+		void Send(double package, uint8_t digit = DEFAULT_DIGIT_NO); // sned double
+
+		void Send(const String &s);	// send constant string 
+
 		
 		//Habdling received data
-		int ReceiveInt(void);			//receive int value
-		unsigned int ReceiveUint(void);	//receive unsigned int value
-		double ReceiveDouble(void);	//receive double value
-		char ReceiveChar(void);  // receive char 
+		int ReceiveInt(void);				//receive int value
+
+		unsigned int ReceiveUint(void);		//receive unsigned int value
+
+		double ReceiveDouble(void);			//receive double value
+
+		char ReceiveChar(void);  			// receive char 
+
+		long ReceiveLong(void);				// receive long
+
+		unsigned long ReceiveUlong(void);	// receive unsigned long
 	
 	
 private: 
 	uint8_t LoRaPins[5];
 	bool interrupt = false;
 
-		void SetInterrupt(void);
+	void SetInterrupt(void);	// configure receiving interrupt
+
+	// to convert from long to char vice versa
+	union{
+		char union_char[4];
+		long union_long;
+		 } long_conv;
+
+	// to convert from unsigned long to char vice versa
+	union{
+		char union_char[4];
+		unsigned long union_Ulong;
+		 } Ulong_conv;
 
 	
 };
