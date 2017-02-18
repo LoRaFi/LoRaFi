@@ -37,9 +37,9 @@
 - tx_sw is the transmitter switch pin number of LoRa transceiver
 - dio0 is the dio0 (digital input/output no. 0) pin number of LoRa transceiver
 
-> Note: The pins numbers is the Arduino pins numbers that connected to the LoRa transceiver
+> Note 1: The pins numbers is the Arduino pins numbers that connected to the LoRa transceiver
 
-If you use the LoRaFi board you do not need to pass any thing and the ``` begin() ``` function will be written as follows:
+> Note 2: If you use the LoRaFi board you do not need to pass any thing and the ```begin()``` function will be written as follows:
 
 ```C++
 LoRaFi.begin();
@@ -56,7 +56,7 @@ LoRaFi.end();
 ```C++
 LoRaFi.reset();
 ```
---------------------------
+-------------------------------------------------------
 ## Modes
 
 ### Sleep
@@ -78,12 +78,12 @@ LoRaFi.idle();
 LoRaFi.Mode(mode);
 ```
 The available modes:
-- ``` SLEEP ```         : sleep mode
-- ``` LORA ```          : lomg range mode
-- ``` STANDBY ```       : standby or idle mode
-- ``` TX ```            : transmitting mode
-- ``` RX ```            : single byte receiving mode
-- ``` RX_CONTINUOUS ``` : continuous receiving mode
+- ```SLEEP```         : sleep mode
+- ```LORA```          : lomg range mode
+- ```STANDBY```       : standby or idle mode
+- ```TX```            : transmitting mode
+- ```RX```            : single byte receiving mode
+- ```RX_CONTINUOUS``` : continuous receiving mode
 
 > Note: FSK/OOK modes are not supported in this library
 
@@ -119,7 +119,7 @@ This function return the value of SNR in ``` float ``` data type
 LoRaFi.TXpower(power);
 ```
 The support power vlues:
-- ``` NORMAL_POWER ``` : ninimum transmitting power (13dBm) 
+- ``` NORMAL_POWER ``` : minimum transmitting power (13dBm) 
 - ``` MAX_POWER ```    : maximum transmitting power (20dBm)
 
 > Note: Default power is ``` NORMAL_POWER ```
@@ -131,7 +131,7 @@ The support power vlues:
 LoRaFi.SyncWord(sw);
 ```
 
-Supported values from ``` 0x00 ``` to ``` 0xFF ```
+- Supported values from ``` 0x00 ``` to ``` 0xFF ```
 
 > Note: Default is ``` 0x34 ``` 
 
@@ -144,7 +144,7 @@ LoRaFi.ChannelFrequency(frequency);
 
 The frequency in Hz
 
-Supported values from ``` 860E6 ``` Hz to ``` 1020E6 ``` Hz
+- Supported values from ``` 860E6 ``` Hz to ``` 1020E6 ``` Hz
 
 > Note: Default value is ``` 915E6 ``` Hz
 
@@ -157,7 +157,7 @@ LoRaFi.Bandwidth(bw);
 
 The frequency in Hz
 
-Supported values are ``` 125E3, 250E3, 500E3 ``` Hz
+- Supported values are ``` 125E3, 250E3, 500E3 ``` Hz
 
 > Note: Default value is ``` 125E3 ``` Hz
 
@@ -168,7 +168,7 @@ Supported values are ``` 125E3, 250E3, 500E3 ``` Hz
 LoRaFi.SpreadingFactor(SF);
 ```
 
-Supported values are from ``` 6-12 ``` 
+- Supported values are from ``` 6-12 ``` 
 
 > Note: Default value is ``` 12 ``` 
 
@@ -179,7 +179,7 @@ Supported values are from ``` 6-12 ```
 LoRaFi.PreambleLength(length);
 ```
 
-supported values from ``` 6 ``` to ``` 65535 ``` 
+- supported values from ``` 6 ``` to ``` 65535 ``` 
 
 > Note: Default value is ``` 8 ``` 
 
@@ -190,7 +190,7 @@ supported values from ``` 6 ``` to ``` 65535 ```
 LoRaFi.CodingRate(C_Rate);
 ```
 
-Supported values from ``` 5 ``` to ``` 8 ``` 
+- Supported values from ``` 5 ``` to ``` 8 ``` 
 
 > Note: Default value is ``` 5 ```
 
@@ -204,7 +204,7 @@ Supported values from ``` 5 ``` to ``` 8 ```
 LoRaFi.Send(data);
 ```
 
-Supported data types are ``` const String, const char, char, unsigned char, int, unsigned int, long, unsigned long, double ``` 
+- Supported data types are ``` const String, const char, char, unsigned char, int, unsigned int, long, unsigned long, double ``` 
 
 
 ### Send Package
@@ -214,9 +214,9 @@ Supported data types are ``` const String, const char, char, unsigned char, int,
 LoRaFi.SendPackage(*Package, packageLength);
 ```
 
-Supported data type is ``` char ``` array
+- Supported data type is ``` char ``` array
 
-Supported package length from ``` 1-255 ``` 
+Supported package length from ``` 1 ``` to ``` 255 ``` 
 
 > Note: Default packageLength is ``` 1 ``` 
 
@@ -298,11 +298,11 @@ This function uses to receive ``` char ``` array
 LoRaFi.ReceivingInterrupt(userFunction);
 ```
 
-The userFunction is a callback function, it will be called when the data received 
+The "userFunction" is a callback function, it will be called when the data received 
 
 > Note: This function must take no parameters and return nothing. This function is sometimes referred to as receiving interrupt service routine.
 
-*For more information see the examples*
+*For more information see the [examples](https://github.com/LoRaFi/LoRaFi/tree/master/examples)*
 
 ### Cancel Interrupt
 **Cancel receiving interrupt**
@@ -311,8 +311,7 @@ The userFunction is a callback function, it will be called when the data receive
 LoRaFi.CancelInterrupt();
 ```
 
-This function uses to cancel the 
-interrupt service routine and stop calling the callback function
+This function uses to cancel the interrupt service routine and stop calling the callback function
 
 
 --------------------------------------------------------------------
