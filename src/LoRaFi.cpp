@@ -1,5 +1,5 @@
 /*
- * LoRaFi.cpp version 1.0
+ * LoRaFi.cpp version 1.1
  *
  *  Created on: Feb 8, 2017
  *      Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
@@ -90,6 +90,20 @@ void LoRaFi::Mode(uint8_t mode)
 
 
 
+
+//Sleep Mode
+void LoRaFi::sleep(void)
+{
+	Mode();
+}
+
+
+
+// Idle mode
+void LoRaFi::idle(void)
+{
+	Mode(STANDBY);
+}
 
 
 
@@ -641,7 +655,6 @@ char LoRaFi::ReceiveChar(void)
 	
 	return receivedchar[0];
 }
-
 
 
 
