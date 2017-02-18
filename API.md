@@ -4,7 +4,7 @@
 
 #### [Include The Library](#include-the-library-1)
 #### [Setup](#setup-1)
-#### [Modes](#mode-1)
+#### [Modes](#modes-1)
 #### [Signal Quality](#signal-quality-1)
 #### [Configuration](#configuration-1)
 #### [Sending Data](#sending-data-1)
