@@ -1,7 +1,7 @@
 # LoRaFi
 This is an Arduino library for LoRaFi shelld (LoRa SX1272/73 - 860 MHz to 1020 MHz Low Power Long Range Transceiver)
 
- version 1.0
+ version 1.1
  
    Created on: Feb 8, 2017
        Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
