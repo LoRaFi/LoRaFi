@@ -1,5 +1,5 @@
 /*
- * LoRaFi.h version 1.0
+ * LoRaFi.h version 1.1
  *
  *  Created on: Feb 8, 2017
  *      Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
@@ -79,6 +79,10 @@ class LoRaFi
 		
 		void Mode(uint8_t mode = SLEEP);
 		
+		void sleep(void);
+		
+		void idle(void);
+		
 		void TXpower(uint8_t pow = NORMAL_POWER);
 		
 		void SendPackage(char *Package, uint8_t packageLength = DEFAULT_PACKAGE_LENGTH);
@@ -144,6 +148,7 @@ class LoRaFi
 	
 	
 private: 
+
 	uint8_t LoRaPins[5];
 	bool interrupt = false;
 
@@ -166,5 +171,6 @@ private:
 
 
 
-
 #endif
+
+
