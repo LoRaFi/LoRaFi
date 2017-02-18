@@ -123,7 +123,7 @@ void LoRaFi::end(void)
 
 
 
-//Rest LoRa module, after reset, the setting will return to default and it should be configured
+//Reset LoRa module, after reset, the setting will return to default and it should be configured
 void LoRaFi::reset(void)
 {
 	//Reset LoRa chip
@@ -168,13 +168,15 @@ void LoRaFi::TXpower(uint8_t pow)
 // set channel frequency
 void LoRaFi::ChannelFrequency(long frequency)
 {
-  Mode(STANDBY);
+  Mode(SLEEP);
 
   uint64_t freq = ((uint64_t)frequency << 19) / 32000000;
 
   Write_Register(0x06, (uint8_t)(freq >> 16));
   Write_Register(0x07, (uint8_t)(freq >> 8));
   Write_Register(0x08, (uint8_t)(freq >> 0));
+  
+  Mode(STANDBY);
 
 }
 
@@ -224,7 +226,7 @@ void LoRaFi::Bandwidth(long bw)
 
 
 
-//Set the coding rate of LoRa radio "supported values are from 5 to 8"
+//Set the coding rate of LoRa radio "supported values are from 5 to 8"  Default value is 5
 void LoRaFi::CodingRate(uint8_t C_Rate)
 {
   Mode(STANDBY);
@@ -240,7 +242,7 @@ void LoRaFi::CodingRate(uint8_t C_Rate)
 
 
 
-//Set the preamble length of LoRa radio " supported values from 6 to 65535
+//Set the preamble length of LoRa radio " supported values from 6 to 65535 default value is 8
 void LoRaFi::PreambleLength(uint16_t length)
 {
     Mode(STANDBY);
