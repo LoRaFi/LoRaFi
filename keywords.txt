@@ -1,0 +1,52 @@
+#######################################
+# Syntax Coloring Map For LoRa
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+LoRaFi	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+#######################################
+# Setup (KEYWORD3)
+#######################################
+
+begin       KEYWORD1
+end         KEYWORD1
+sleep       KEYWORD1
+idle        KEYWORD1
+
+Mode                KEYWORD3
+TXpower             KEYWORD3
+ChannelFrequency    KEYWORD3
+SpreadingFactor     KEYWORD3
+Bandwidth           KEYWORD3
+CodingRate          KEYWORD3
+PreambleLength      KEYWORD3
+SyncWord            KEYWORD3
+reset               KEYWORD3
+Rssi                KEYWORD3
+SNR                 KEYWORD3
+
+Write_Register        KEYWORD2
+Read_Register         KEYWORD2
+SendPackage           KEYWORD2
+ReceivePackage        KEYWORD2
+ReceivingInterrupt    KEYWORD2
+CancelInterrupt       KEYWORD2
+Send                  KEYWORD2
+ReceiveInt            KEYWORD2
+ReceiveUint           KEYWORD2
+ReceiveDouble         KEYWORD2
+ReceiveChar           KEYWORD2
+ReceiveLong           KEYWORD2
+ReceiveUlong          KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
