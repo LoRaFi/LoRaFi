@@ -45,6 +45,7 @@ Initialize the library with LoRa transceiver pins numbers
 LoRaFi.begin();
 ```
 ### End
+
 Stop the library and set LoRa transceiver to sleep mode
 
 ```C++
@@ -52,6 +53,7 @@ LoRaFi.end();
 ```
  
 ### Reset
+
 Restore the defaults (*restore factory defaults*)
 ```C++
 LoRaFi.reset();
@@ -60,18 +62,21 @@ LoRaFi.reset();
 ## Modes
 
 ### Sleep
+
 Set LoRa transceiver to sleep mode
 ```C++
 LoRaFi.sleep();
 ```
 
 ### Idle
+
 Set LoRa transceiver to Standby mode
 
 ```C++
 LoRaFi.idle();
 ```
 ### Mode
+
 Set the previous modes and other modes if required
 
 ```C++
@@ -91,6 +96,7 @@ The available modes:
 ## Signal Quality
 
 ### RSSI
+
 Get the RSSI (Recieved Signal Strength Indicator) value
 
 ```C++
@@ -99,6 +105,7 @@ int rssiValue = LoRaFi.Rssi();
 This function return the value of RSSI in ``` int ``` data type
 
 ### SNR
+
 Get the SNR (Signal-to-noise ratio) value
 ```C++
 float snrValue = LoRaFi.SNR();
@@ -108,12 +115,14 @@ This function return the value of SNR in ``` float ``` data type
 ------------------------------------------------------------------------------
 
 ## Configuration
+
 Configure the LoRa transceiver
 
 > Note: If the configuration functions were called and the user didn't pass any value then the default value of the function will be set.
 
 
 ### Power
+
 Set transmitting power
 ```C++
 LoRaFi.TXpower(power);
@@ -125,6 +134,7 @@ The support power vlues:
 > Note: Default power is ``` NORMAL_POWER ```
 
 ### Synchronizing Word
+
 Set synchronizing word
 
 ```C++
@@ -136,6 +146,7 @@ LoRaFi.SyncWord(sw);
 > Note: Default is ``` 0x34 ``` 
 
 ### Carrier Frequency
+
 Set carrier frequency 
 
 ```C++
@@ -149,6 +160,7 @@ The frequency in Hz
 > Note: Default value is ``` 915E6 ``` Hz
 
 ### Signal Bandwidth
+
 Set Signal bandwidth 
 
 ```C++
@@ -162,6 +174,7 @@ The frequency in Hz
 > Note: Default value is ``` 125E3 ``` Hz
 
 ### Spreading Factor
+
 Set spreading factor of LoRa transceiver
 
 ```C++
@@ -173,6 +186,7 @@ LoRaFi.SpreadingFactor(SF);
 > Note: Default value is ``` 12 ``` 
 
 ### Preamble Length
+
 Set preamble length of LoRa transceiver
 
 ```C++
@@ -184,6 +198,7 @@ LoRaFi.PreambleLength(length);
 > Note: Default value is ``` 8 ``` 
 
 ### Coding Rate
+
 Set coding rate of LoRa transceiver
 
 ```C++
@@ -198,6 +213,7 @@ LoRaFi.CodingRate(C_Rate);
 ## Sending Data
 
 ### Send
+
 Send data in many data types
 
 ```C++
@@ -208,7 +224,8 @@ LoRaFi.Send(data);
 
 
 ### Send Package
-Send dtat package
+
+Send dara package
 
 ```C++
 LoRaFi.SendPackage(*Package, packageLength);
@@ -225,6 +242,7 @@ Supported package length from ``` 1 ``` to ``` 255 ```
 ## Receiving Data
 
 ### Receive Char
+
 Receiving single char
 
 ```C++
@@ -234,6 +252,7 @@ char character = LoRaFi.ReceiveChar();
 This function return the received ``` char ```
 
 ### Receive Integer
+
 Receive integer value
 
 ```C++
@@ -242,6 +261,7 @@ int intValue = LoRaFi.ReceiveInt();
 This function return the received ``` int ``` value
 
 ### Receive Unsigned Integer
+
 Receive unsigned integer value 
 
 ```C++
@@ -250,6 +270,7 @@ unsigned int UintValue = LoRaFi.ReceiveUint();
 This function return the received ``` unsigned int ``` value
 
 ### Receive Long
+
 Receive long value
 
 ```C++
@@ -259,6 +280,7 @@ long longValue = LoRaFi.ReceiveLong();
 This function return the received ``` long ``` value
 
 ### Receive Unsigned Long
+
 Receive unsigned long value
 
 ```C++
@@ -268,6 +290,7 @@ unsigned long UlongValue = LoRaFi.ReceiveUlong();
 This function return the received ``` unsigned long ``` value
 
 ### Receive Double
+
 Receive double value
 
 ```C++
@@ -277,6 +300,7 @@ double doubleValue = LoRaFi.ReceiveDouble();
 This function return the received ``` double ``` value
 
 ### Receive Package
+
 Receive char array
 
 ```C++
@@ -289,9 +313,11 @@ This function uses to receive ``` char ``` array
 - Supported package length is from ``` 1-255 ``` 
 
 ## Interrupt 
+
 Receiving data using interrupt instead of waiting for incoming data
 
 ### Receiving Interrupt
+
 Set receiving interrupt
 
 ```C++
@@ -305,6 +331,7 @@ The "userFunction" is a callback function, it will be called when the data recei
 *For more information see the [examples](https://github.com/LoRaFi/LoRaFi/tree/master/examples)*
 
 ### Cancel Interrupt
+
 Cancel receiving interrupt
 
 ```C++
@@ -319,6 +346,7 @@ This function uses to cancel the interrupt service routine and stop calling the 
 ## Other Functions
 
 ### Write to Register
+
 Write data to specific register
 
 ```C++
@@ -332,6 +360,7 @@ LoRaFi.Write_Register(address, data);
 
 
 ### Read Register
+
 Read data from specific register
 
 ```C++
