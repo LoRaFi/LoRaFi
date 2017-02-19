@@ -225,7 +225,7 @@ LoRaFi.Send(data);
 
 ### Send Package
 
-Send dara package
+Send data package
 
 ```C++
 LoRaFi.SendPackage(*Package, packageLength);
