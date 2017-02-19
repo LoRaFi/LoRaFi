@@ -51,11 +51,12 @@ This library is distributed in the hope that it will be useful, but WITHOUT ANY 
 1. Download ZIP file
 2. Choose ```Sketch``` -> ```Include Library``` -> ```Add ZIP Library```
 3. Choose the ZIP file of the library
+
 For more details see [Importing a .zip Library](https://www.arduino.cc/en/Guide/Libraries#toc4).
 
 ### Using Git (Linux)
 
-```
+```bash
 cd ~/Arduino/libraries 
 git clone https://github.com/LoRaFi/LoRaFi.git
 ```
@@ -63,7 +64,7 @@ git clone https://github.com/LoRaFi/LoRaFi.git
 
 ### Using Git (Windows)
 
-```
+```bash
 cd ~/Documents/Arduino/libraries/
 git clone https://github.com/LoRaFi/LoRaFi.git
 ```
