@@ -251,6 +251,16 @@ char character = LoRaFi.ReceiveChar();
 
 This function return the received ``` char ```
 
+### Receive Unsigned Char
+
+Receiving single unsigned char
+
+```C++
+unsigned char LoRaFi.ReceiveUchar();
+```
+This function return the received ``` unsigned char ```
+
+
 ### Receive Integer
 
 Receive integer value
