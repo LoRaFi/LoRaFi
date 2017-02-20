@@ -660,7 +660,15 @@ char LoRaFi::ReceiveChar(void)
 
 
 
+//Receive unsigned char
+unsigned char LoRaFi::ReceiveUchar(void)
+{
+	char receivedUchar[1];
 
+	ReceivePackage(receivedUchar,1);
+	
+	return (unsigned char) receivedUchar[0];
+}
 
 
 
