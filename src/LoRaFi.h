@@ -116,15 +116,15 @@ class LoRaFi
 		//Habdling data for send
 		void Send(const char[]);	// send char array
 
-		void Send(char);			// send char
+		void Send(char);		// send char
 
 		void Send(unsigned char);	// send unsigned char
 
-		void Send(int);				// send int
+		void Send(int);			// send int
 
 		void Send(unsigned int);	// send unsigend 
 
-		void Send(long);			// send long 
+		void Send(long);		// send long 
 
 		void Send(unsigned long);	// send unsigned long 
 
@@ -134,15 +134,17 @@ class LoRaFi
 
 		
 		//Habdling received data
-		int ReceiveInt(void);				//receive int value
+		int ReceiveInt(void);			//receive int value
 
 		unsigned int ReceiveUint(void);		//receive unsigned int value
 
-		double ReceiveDouble(void);			//receive double value
+		double ReceiveDouble(void);		//receive double value
 
-		char ReceiveChar(void);  			// receive char 
+		char ReceiveChar(void);  		// receive char 
+	
+		unsigned char ReceiveUchar(void);	// receive unsigned char
 
-		long ReceiveLong(void);				// receive long
+		long ReceiveLong(void);			// receive long
 
 		unsigned long ReceiveUlong(void);	// receive unsigned long
 	
