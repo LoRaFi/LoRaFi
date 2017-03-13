@@ -533,7 +533,7 @@ void LoRaFi::Send(int package)
 }
 
 
-//
+//Handling unsigned int
 void LoRaFi::Send(unsigned int package)
 {
 	uint8_t len = sizeof(package);
@@ -568,8 +568,10 @@ void LoRaFi::Send(double package, uint8_t digit)
 {
 	uint8_t len = sizeof(package);
 
-	char *convertedChar;
-	sprintf(convertedChar, "%f", package);
+	char convertedChar[20];
+
+	dtostrf(package, 4, digit, convertedChar);
+
 	SendPackage(convertedChar, 20);
 	
 }
