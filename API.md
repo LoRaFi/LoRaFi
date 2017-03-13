@@ -223,6 +223,14 @@ LoRaFi.Send(data);
 - Supported data types are ``` const String, const char, char, unsigned char, int, unsigned int, long, unsigned long, double ``` 
 
 
+To send double or float, it possible to specify the number of digits after floating point, the Send function will look like follows:
+```C++
+LoRaFi.Send(data, digits);
+```
+
+> Note: The default value of "digits" is ``` 2 ```
+
+
 ### Send Package
 
 Send data package
