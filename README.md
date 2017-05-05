@@ -88,8 +88,10 @@ See [examples folder](https://github.com/LoRaFi/LoRaFi/tree/master/examples)
 ---------------------------------------------------------------------
 
 #### For more details and news visit the official website of LoRaFi
-WWW.lorafi.tk
+www.lorafi.tk
+
 or
+
 www.loraficeastech.wixsite.com/lorafi
 
 ---------------------------------------------------------------------
