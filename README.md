@@ -51,7 +51,7 @@ This library is distributed in the hope that it will be useful, but WITHOUT ANY 
 1. Choose ```Sketch``` -> ```Include Library``` -> ```Manage Libraries```
 2. Type ```LoRaFi``` into the search box
 3. Click the row to select the library
-4. Click the Install button to ```install``` the library
+4. Click the ```Install``` button to install the library
 #### Or download the zip file
 1. Download ZIP file
 2. Choose ```Sketch``` -> ```Include Library``` -> ```Add ZIP Library```
