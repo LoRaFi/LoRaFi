@@ -22,7 +22,7 @@ This is an [Arduino](https://www.arduino.cc/) library for
 * LoRaFi board 
 * [LoRa](https://www.rfsolutions.co.uk/radio-modules-c10/frequency-c57/fm-lora-transceiver-module-pre-set-to-868mhz-p468) RF transceiver [SX1272/73](http://www.semtech.com/wireless-rf/rf-transceivers/sx1272/) 
 
-version 1.1
+version 1.2
  
 Created on: Feb 8, 2017
 
@@ -48,6 +48,11 @@ This library is distributed in the hope that it will be useful, but WITHOUT ANY 
 ## Installation
 
 ### Using the Arduino IDE Library Manager (Linux, Windows and Mac OS)
+1. Choose ```Sketch``` -> ```Include Library``` -> ```Manage Libraries```
+2. Type ```LoRaFi``` into the search box
+3. Click the row to select the library
+4. Click the Install button to ```install``` the library
+#### Or download the zip file
 1. Download ZIP file
 2. Choose ```Sketch``` -> ```Include Library``` -> ```Add ZIP Library```
 3. Choose the ZIP file of the library
