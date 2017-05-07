@@ -1,7 +1,7 @@
 /*
- * LoRaFi.cpp version 1.1
+ * LoRaFi.cpp version 1.2.1
  *
- *  Created on: Feb 8, 2017
+ *  Created on: May 7, 2017
  *      Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
  *      Email: Qudoren@gmail.com , ammarzakaria@unimap.edu.my
  *
