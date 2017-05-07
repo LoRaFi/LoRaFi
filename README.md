@@ -24,7 +24,7 @@ This is an [Arduino](https://www.arduino.cc/) library for
 
 version 1.2.1
  
-Created on: Feb 8, 2017
+Released on: May 7, 2017
 
 --------------------------------------------------------------------
    
