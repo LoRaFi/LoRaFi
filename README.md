@@ -22,7 +22,7 @@ This is an [Arduino](https://www.arduino.cc/) library for
 * LoRaFi board 
 * [LoRa](https://www.rfsolutions.co.uk/radio-modules-c10/frequency-c57/fm-lora-transceiver-module-pre-set-to-868mhz-p468) RF transceiver [SX1272/73](http://www.semtech.com/wireless-rf/rf-transceivers/sx1272/) 
 
-version 1.2
+version 1.2.1
  
 Created on: Feb 8, 2017
 
