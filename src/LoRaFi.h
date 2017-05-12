@@ -109,7 +109,7 @@ class LoRaFi
 
 		int16_t Rssi(void);
 
-		float PacketRssi(void);
+		int16_t PacketRssi(void);
 
 		float SNR(void);
 
@@ -121,7 +121,7 @@ class LoRaFi
 		
 		void CRC(uint8_t crc = ON);
 		
-		void LDRoptimize(uint8_t ldr);
+		void LDRoptimize(uint8_t ldr = ON);
 
 		//Habdling data for send
 		void Send(const char[]);	// send char array
