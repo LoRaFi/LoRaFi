@@ -232,7 +232,7 @@ The supported statuses are:
 
 - ``` OFF ``` : Disable the frequency hopping
 
-> Note: Default power is ``` ON ```
+> Note: Default status is ``` ON ```
 
 ### CRC
 
@@ -248,7 +248,7 @@ The supported statuses are:
 
 - ``` OFF ``` : disable the frequency hopping
 
-> Note: Default power is ``` ON ```
+> Note: Default status is ``` ON ```
 
 ### LDR Optimize
 
@@ -265,7 +265,7 @@ The supported statuses are:
 
 - ``` OFF ``` : disable the frequency hopping
 
-> Note: Default power is ``` ON ```
+> Note: Default status is ``` ON ```
 
 --------------------------------------------
 ## Sending Data
