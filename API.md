@@ -104,7 +104,7 @@ int rssiValue = LoRaFi.Rssi();
 ```
 This function return the value of RSSI in ``` int ``` data type
 
-### Packet Rssi
+### Packet RSSI
 
 Get the RSSI of the last received packet
 
@@ -220,7 +220,7 @@ LoRaFi.CodingRate(C_Rate);
 
 ### Frequency Hopping
 
-Set the frequency hopping ON/OFF
+Enable or disable the frequency hopping
 
 ```C++
 LoRaFi.FrequencyHopping(status);
@@ -228,15 +228,15 @@ LoRaFi.FrequencyHopping(status);
 
 The supported statuses are:
 
-- ``` ON ``` : Set the frequency hopping ON
+- ``` ON ``` : Enable the frequency hopping
 
-- ``` OFF ``` : Set the frequency hopping OFF
+- ``` OFF ``` : Disable the frequency hopping
 
 > Note: Default power is ``` ON ```
 
 ### CRC
 
-Set the cyclic redundancy check (CRC) ON/OFF
+Enable or disable the cyclic redundancy check (CRC)
 
 ```C++
 LoRaFi.CRC(status);
@@ -244,15 +244,15 @@ LoRaFi.CRC(status);
 
 The supported statuses are:
 
-- ``` ON ``` : Set the frequency hopping ON
+- ``` ON ``` : Enable the frequency hopping
 
-- ``` OFF ``` : Set the frequency hopping OFF
+- ``` OFF ``` : disable the frequency hopping
 
 > Note: Default power is ``` ON ```
 
-### LDR optimize
+### LDR Optimize
 
-Set the low data rate (LDR) optimize ON/OFF
+Enable or disable the low data rate (LDR) optimize
 
 > Note: Mandated to enable the LDRoptimize when the sperading factor is 11 or 12 with bandwidth = 125 kHz
 
@@ -261,9 +261,9 @@ LoRaFi.LDRoptimize(status);
 ```
 The supported statuses are:
 
-- ``` ON ``` : Set the frequency hopping ON
+- ``` ON ``` : Enable the frequency hopping
 
-- ``` OFF ``` : Set the frequency hopping OFF
+- ``` OFF ``` : disable the frequency hopping
 
 > Note: Default power is ``` ON ```
 
