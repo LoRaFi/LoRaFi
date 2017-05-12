@@ -1,7 +1,7 @@
 /*
- * LoRaFi.h version 1.2.1
+ * LoRaFi.h version 1.3.0
  *
- *  Created on: May 7, 2017
+ *  Created on: May 13, 2017
  *      Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
  *      Email: Qudoren@gmail.com , ammarzakaria@unimap.edu.my
  *
@@ -64,6 +64,8 @@ using namespace std;
 #define MAX_POWER			0x8F
 #define NORMAL_POWER			0x0F
 #define DEFAULT_DIGIT_NO		2
+#define ON						1
+#define OFF						0
 
 
 class LoRaFi
@@ -107,11 +109,19 @@ class LoRaFi
 
 		int16_t Rssi(void);
 
+		float PacketRssi(void);
+
 		float SNR(void);
 
 		void ReceivingInterrupt(void (*userFunction)(void));
 
 		void CancelInterrupt(void);
+		
+		void FrequencyHopping(uint8_t FH = ON);
+		
+		void CRC(uint8_t crc = ON);
+		
+		void LDRoptimize(uint8_t ldr);
 
 		//Habdling data for send
 		void Send(const char[]);	// send char array
@@ -175,5 +185,4 @@ private:
 
 
 #endif
-
 
