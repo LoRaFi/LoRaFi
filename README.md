@@ -19,7 +19,7 @@
 ## LoRaFi Library
 
 This is an [Arduino](https://www.arduino.cc/) library for 
-* LoRaFi board 
+* [LoRaFi board](https://loraficeastech.wixsite.com/lorafi) 
 * [LoRa](https://www.rfsolutions.co.uk/radio-modules-c10/frequency-c57/fm-lora-transceiver-module-pre-set-to-868mhz-p468) RF transceiver [SX1272/73](http://www.semtech.com/wireless-rf/rf-transceivers/sx1272/) 
 
 version 1.3.0
