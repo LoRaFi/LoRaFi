@@ -1,7 +1,7 @@
 /*
- * LoRaFi.cpp version 1.2.1
+ * LoRaFi.cpp version 1.3.0
  *
- *  Created on: May 7, 2017
+ *  Created on: May 13, 2017
  *      Authors: KHUDHUR ABDULLAH ALFARHAN and Dr. Ammar Zakaria
  *      Email: Qudoren@gmail.com , ammarzakaria@unimap.edu.my
  *
@@ -9,6 +9,11 @@
  *  and supported by Centre of Excellence for Advanced Sensor Technology (CEASTech)
  *  https://ceastech.com/
  *  Universiti Malaysia Perlis (UniMAP)
+ *  For more information about LoRaFi plase visit the following links
+ *  www.lorafi.tk
+ *  www.loraficeastech.wixsite.com/lorafi
+ *  LoRaFi forum:
+ *  www.loraficeastech.wixsite.com/lorafi/forum
  *
  *  This library is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU Lesser General Public
@@ -66,6 +71,8 @@ void LoRaFi::begin(uint8_t cs, uint8_t rst, uint8_t rx_sw, uint8_t tx_sw, uint8_
 
 	Mode(LORA);
 	delay(10);
+	CRC();
+	FrequencyHopping();
 	SpreadingFactor(12);
 
 delay(100);
@@ -143,6 +150,20 @@ int16_t LoRaFi::Rssi(void)
 
 
 
+// Get the RSSI of the last received packet
+float LoRaFi::PacketRssi(void)
+{
+	if((SNR()) >= 0)
+		{
+		 return -139 + ((int8_t)Read_Register(0x1A));
+		}
+	else
+		{
+		 return -139 + ((int8_t)Read_Register(0x1A)) + SNR();
+		}
+}
+
+
 
 //Get SNR value
 float LoRaFi::SNR(void)
@@ -206,6 +227,8 @@ void LoRaFi::SpreadingFactor(uint8_t SF)
 }
 
 
+
+
 //Set the signal bandwidth of the radio "supported values are 125E3, 250E3, 500E3" default value is 125E3
 void LoRaFi::Bandwidth(long bw)
 {
@@ -262,6 +285,51 @@ void LoRaFi::SyncWord(uint8_t sw)
 	Mode(STANDBY);
 
 	Write_Register(0x39, sw);
+}
+
+
+
+// Set the frequency hopping ON/OFF
+void LoRaFi::FrequencyHopping(uint8_t FH)
+{
+	if(FH == ON)
+		{
+		 Write_Register(0x24, 0x11);
+		}
+	if(FH == OFF)
+		{
+		 Write_Register(0x24, 0x00);
+		}
+}
+
+
+// Set CRC checksum ON/OFF
+void LoRaFi::CRC(uint8_t crc)
+{
+	if(crc == ON)
+		{
+		 Write_Register(0x1d, (Read_Register(0x1d) & 0xff) | (0x1 << 1));
+		}
+	if(crc == OFF)
+		{
+		 Write_Register(0x1d, (Read_Register(0x1d) & 0xff) | (0x0 << 1));
+		}
+}
+
+
+
+
+// Set Low Data Rate Optimize ON/OFF
+void LoRaFi::LDRoptimize(uint8_t ldr)
+{
+	if(ldr == ON)
+		{
+		 Write_Register(0x1d, (Read_Register(0x1d) & 0xff) | (0x1));
+		}
+	if(ldr == OFF)
+		{
+		 Write_Register(0x1d, (Read_Register(0x1d) & 0xff) | (0x0));
+		}
 }
 
 
@@ -488,6 +556,8 @@ void LoRaFi::ReceivePackage(char *Package, uint8_t packageLength)
 
 
 
+
+
 //handling data for send
 
 
@@ -671,7 +741,6 @@ unsigned char LoRaFi::ReceiveUchar(void)
 	
 	return (unsigned char) receivedUchar[0];
 }
-
 
 
 
