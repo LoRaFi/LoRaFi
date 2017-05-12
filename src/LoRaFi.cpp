@@ -151,7 +151,7 @@ int16_t LoRaFi::Rssi(void)
 
 
 // Get the RSSI of the last received packet
-float LoRaFi::PacketRssi(void)
+int16_t LoRaFi::PacketRssi(void)
 {
 	if((SNR()) >= 0)
 		{
